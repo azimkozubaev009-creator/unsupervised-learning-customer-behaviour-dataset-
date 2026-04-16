@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Analytics Project</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #121212; color: white; margin: 0; padding: 20px; }
+        .container { max-width: 1000px; margin: auto; }
+        .header-top { text-align: center; margin-bottom: 30px; border-bottom: 1px solid #333; padding-bottom: 20px; }
+        .header-top h1 { color: #3498db; margin: 0; font-size: 1.2em; text-transform: uppercase; letter-spacing: 2px; }
+        .header-top h2 { margin: 10px 0 0; font-size: 2em; }
+        .card { background: #1e1e1e; padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 1px solid #333; }
+        input { padding: 12px; margin: 5px; border-radius: 6px; border: 1px solid #444; background: #222; color: white; width: 180px; }
+        button { padding: 12px 25px; background: #007bff; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .result-box { margin-top: 15px; padding: 15px; background: #2c3e50; border-radius: 6px; font-size: 1.2em; border-left: 6px solid #3498db; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.9em; }
+        th, td { padding: 10px; border: 1px solid #333; text-align: left; }
+        th { background: #252525; }
+        img { max-width: 100%; border-radius: 8px; margin-top: 10px; border: 1px solid #444; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-top">
+            <h1>Unsupervised Learning</h1>
+            <h2>Customer Behaviour Dataset</h2>
+        </div>
+
+        <div class="card">
+            <h2>🔍 Проверка сегментации</h2>
+            <form method="POST">
+                <input type="number" name="income" placeholder="Доход ($)" required>
+                <input type="number" name="score" placeholder="Траты (1-100)" required>
+                <button type="submit">Определить</button>
+            </form>
+            {% if result %}<div class="result-box">Итог: 💳 <strong>{{ result }}</strong></div>{% endif %}
+        </div>
+
+        <div class="card">
+            <h2>📊 Визуализация кластеров и Датасет</h2>
+            <img src="data:image/png;base64,{{ chart2 }}">
+            
+            <h3>Исходные данные (Dataset):</h3>
+            <table>
+                <tr><th>Age</th><th>Income</th><th>Score</th><th>Visits</th><th>Gender</th><th>Product</th></tr>
+                {% for row in table_data %}
+                <tr>
+                    <td>{{ row.Age }}</td><td>{{ row.Annual_Income }}</td><td>{{ row.Spending_Score }}</td>
+                    <td>{{ row.Monthly_Visits }}</td><td>{{ row.Gender }}</td><td>{{ row.Preferred_Product }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+</html>
