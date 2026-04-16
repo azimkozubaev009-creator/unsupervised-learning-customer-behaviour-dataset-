@@ -1,0 +1,6 @@
+pandas
+sklearn.cluster
+KMeans
+joblib
+Matplotlib/Seaborn
+NumPy
